@@ -1,13 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  purge: {
-    content: [
-      './src/**/*.{html,ts}'
-    ]
-  },
-  content: [],
+  content: ['./src/**/*.{html,ts}'],
   theme: {
     extend: {},
   },
   plugins: [],
+  // variants: {
+  //   extend: {
+  //     opacity: ['disabled'],
+  //     backgroundColor: ['disabled']
+  //   }
+  // }
 }
