@@ -11,4 +11,6 @@ export class AlertComponent {
   get bgColor() {
     return `bg-${this.color}-400`;
   }
+
+  constructor() { }
 }
