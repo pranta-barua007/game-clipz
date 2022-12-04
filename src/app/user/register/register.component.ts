@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 
 import IUser from 'src/app/models/user.model';
+import { RegisterValidators } from '../validators/register-validators';
 
 @Component({
   selector: 'app-register',
@@ -45,7 +46,7 @@ export class RegisterComponent {
       Validators.minLength(13),
       Validators.maxLength(13)
     ])
-  });
+  }, [RegisterValidators.match('password', 'confirm_password')]);
 
   async register() {
     this.showAlert = true;
