@@ -9,6 +9,8 @@ import { NavComponent } from './nav/nav.component';
 
 import { AngularFireModule } from '@angular/fire/compat'
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore'
+
 import { environment } from 'src/environments/environment';
 
 @NgModule({
@@ -21,7 +23,8 @@ import { environment } from 'src/environments/environment';
     AppRoutingModule, 
     UserModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
