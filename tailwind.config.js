@@ -9,6 +9,7 @@ module.exports = {
     'bg-red-400',
     'bg-green-400',
     'bg-blue-400',
+    'bg-indigo-700'
   ],
   // variants: {
   //   extend: {
