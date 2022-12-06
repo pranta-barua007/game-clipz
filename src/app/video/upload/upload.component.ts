@@ -101,10 +101,10 @@ export class UploadComponent implements OnDestroy {
           diplayName: this.user?.displayName as string,
           title: this.uploadForm.value.title as string,
           fileName: `${clipFileName}.mp4`,
-          url: url as string
+          url: url as string,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp()
         };
 
-        console.log(clip);
         const clipDocumentRef = await this.clipsService.createClip(clip);
 
         this.alertColor = 'green'
@@ -124,7 +124,7 @@ export class UploadComponent implements OnDestroy {
         this.alertMsg = 'Upload failed! Please try again later.'
         this.inSubmission = true;
         this.showPercentage = false;
-        console.error(error)
+        console.error(error);
       }
     })
   }
