@@ -6,13 +6,15 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 import IClip from '../models/clip.model';
 
 import { map, switchMap } from 'rxjs/operators';
-import { of, BehaviorSubject, combineLatest } from 'rxjs';
+import { of, BehaviorSubject, combineLatest, lastValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClipService {
   public clipsCollection: AngularFirestoreCollection<IClip>
+  pageClips: IClip[] = [];
+  pendingReq = false;
 
   constructor(
     private db: AngularFirestore,
@@ -24,6 +26,41 @@ export class ClipService {
 
   async createClip(data: IClip): Promise<DocumentReference<IClip>> {
     return await this.clipsCollection.add(data);
+  }
+
+  async getClips() {
+    if(this.pendingReq) {
+      return
+    }
+
+    this.pendingReq = true;
+
+    let query = this.clipsCollection.ref
+      .orderBy('timestamp', 'desc')
+      .limit(6);
+
+    const { length } = this.pageClips;
+
+    if(length) {
+      const lastDocID = this.pageClips[length-1].docID
+      const lastDocSource = this.clipsCollection.doc(lastDocID).get();
+      const lastDoc = await lastValueFrom(lastDocSource);
+
+      
+      query = query.startAfter(lastDoc)
+    }
+    
+    const snapshot = await query.get();
+    console.log({snapshot});
+
+    snapshot.forEach(doc => {
+      this.pageClips.push({
+        docID: doc.id,
+        ...doc.data()
+      })
+    });
+
+    this.pendingReq = false;
   }
 
   getUserClips(sort$: BehaviorSubject<string>) {

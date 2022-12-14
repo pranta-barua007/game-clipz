@@ -9,9 +9,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 export class ClipComponent implements OnInit {
   id = '';
 
-  constructor(private route: ActivatedRoute) {
-
-  }
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(
