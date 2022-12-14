@@ -1,10 +1,12 @@
 import firebase from 'firebase/compat/app';
 export default interface IClip {
-    uid: string,
-    docID?: string,
-    diplayName: string,
-    title: string,
-    fileName: string,
-    url: string,
-    timestamp: firebase.firestore.FieldValue
+    uid: string;
+    docID?: string;
+    diplayName: string;
+    title: string;
+    fileName: string;
+    url: string;
+    screenshotURL: string;
+    screenshotFileName: string;
+    timestamp: firebase.firestore.FieldValue;
 }

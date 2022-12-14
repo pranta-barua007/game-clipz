@@ -4,8 +4,8 @@
 
       <ng-container>
         <div
-        *ngIf="!ffmpegService.isReady; else uploadEditorCtr"
-        class="grid justify-items-center p-8 animate-spin" 
+          *ngIf="!ffmpegService.isReady; else uploadEditorCtr"
+          class="grid justify-items-center p-8 animate-spin" 
         >
           <img 
             src="assets/icons/setting-icon.svg"
@@ -31,6 +31,14 @@
               border-gray-400 transition duration-500 hover:text-white
               hover:bg-indigo-400 hover:border-indigo-400 hover:border-solid text-xl">
             <h5>Drop your file here (mp4 only!)</h5>
+            <div
+              *ngIf="ffmpegService.isRunning" 
+              class="grid justify-items-center animate-spin">
+              <img 
+                src="assets/icons/autorenew-icon.svg"
+                
+              >
+            </div>
           </div>
     
           <!-- Upload Input -->
@@ -58,8 +66,16 @@
               
               <div
                 *ngFor="let screenshot of screenshots"  
-                class="border-8 cursor-pointer border-green-400">
-                <img [src]="screenshot | safeURL">
+                class="border-8 cursor-pointer"
+                [ngClass]="{
+                  'border-green-400': screenshot === selectedScreenShot,
+                  'border-transparent': screenshot !== selectedScreenShot
+                }"
+                >
+                <img 
+                  [src]="screenshot | safeURL"
+                  (click)="selectedScreenShot = screenshot"
+                >
               </div>
              
             </div>
