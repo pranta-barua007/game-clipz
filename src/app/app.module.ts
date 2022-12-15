@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { UserModule } from './user/user.module';
-import { VideoModule } from './video/video.module';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -39,7 +38,6 @@ import { FbTimestampPipe } from './pipes/fb-timestamp.pipe';
     AngularFirestoreModule,
     AngularFireStorageModule,
     UserModule,
-    VideoModule,
     AppRoutingModule, //!important Always order for resolve routes properly,
   ],
   providers: [],
