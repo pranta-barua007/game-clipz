@@ -30,7 +30,15 @@
               }
             ],
             "allowedCommonJsDependencies": [
-              "@ffmpeg/ffmpeg"
+              "@ffmpeg/ffmpeg",
+              "global/document",
+              "global/window",
+              "keycode",
+              "mux.js/lib/tools/parse-sidx",
+              "mux.js/lib/utils/clock",
+              "safe-json-parse/tuple",
+              "videojs-vtt.js",
+              "@videojs/xhr"
             ],
             "styles": [
               "src/styles.css"
