@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { VideoRoutingModule } from './video-routing.module';
@@ -18,6 +18,7 @@ import { SafeURLPipe } from './pipes/safe-url.pipe';
     SafeURLPipe
   ],
   imports: [
+    NgOptimizedImage,
     CommonModule,
     VideoRoutingModule,
     SharedModule,
