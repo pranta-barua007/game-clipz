@@ -5,9 +5,6 @@ import IClip from 'src/app/models/clip.model';
 import { ClipService } from 'src/app/services/clip.service';
 import { ModalService } from 'src/app/services/modal.service';
 
-import { Store } from '@ngrx/store';
-import { toggleModal } from '@store/modal/modal.actions';
-
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
@@ -25,8 +22,7 @@ export class ManageComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private clipService: ClipService,
-    private modal: ModalService, // converted to ngrx
-    private store: Store
+    private modal: ModalService
   ) {
     //an object that acts like both obeservable and observer
     this.sort$ = new BehaviorSubject(this.videoOrder);
@@ -77,8 +73,7 @@ export class ManageComponent implements OnInit {
 
     this.activeClip = clip;
 
-    //this.modal.toggleModal('editClip'); //converted to ngrx
-    this.store.dispatch(toggleModal({ id: 'editClip' }));
+    this.modal.toggleModal('editClip');
   }
 
   update(event: IClip) {

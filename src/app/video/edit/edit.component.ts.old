@@ -1,12 +1,8 @@
 import { Component, Input, Output, EventEmitter, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import IClip from 'src/app/models/clip.model';
-
 import { ClipService } from 'src/app/services/clip.service';
 import { ModalService } from 'src/app/services/modal.service';
-
-import { Store } from '@ngrx/store';
-import { registerModal, unregisterModal } from '@store/modal/modal.actions';
 
 @Component({
   selector: 'app-edit',
@@ -22,9 +18,8 @@ export class EditComponent implements OnInit, OnDestroy, OnChanges {
   @Output() update = new EventEmitter();
 
   constructor(
-    private modal: ModalService, //converted to NgRx
-    private clip: ClipService,
-    private store: Store
+    private modal: ModalService,
+    private clip: ClipService
   ) {}
 
   clipID = new FormControl('');
@@ -38,8 +33,7 @@ export class EditComponent implements OnInit, OnDestroy, OnChanges {
   });
 
   ngOnInit(): void {
-    //this.modal.register('editClip'); //converted to NgRx 
-    this.store.dispatch(registerModal({ id: 'editClip' }));
+    this.modal.register('editClip');  
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -54,8 +48,7 @@ export class EditComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnDestroy(): void {
-    //this.modal.unregister('editClip'); //converted to NgRx
-    this.store.dispatch(unregisterModal({ id: 'editClip' }));
+    this.modal.unregister('editClip');
   }
 
   async submit() {

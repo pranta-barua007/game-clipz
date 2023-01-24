@@ -12,7 +12,7 @@ import { registerModal, unregisterModal } from '@store/modal/modal.actions';
 export class AuthModalComponent implements OnInit, OnDestroy {
   constructor(
     public modal: ModalService, //converted to ngrx
-    public store: Store) {}
+    private store: Store) {}
 
   ngOnInit(): void {
     //this.modal.register('auth'); //converted to NgRx
