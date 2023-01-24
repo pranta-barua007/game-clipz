@@ -21,6 +21,10 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { ClipsListComponent } from './clips-list/clips-list.component';
 import { FbTimestampPipe } from './pipes/fb-timestamp.pipe';
 
+import { store } from './store/store';
+import { StoreModule } from '@ngrx/store';
+import { extModules } from './build-specifics';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +38,8 @@ import { FbTimestampPipe } from './pipes/fb-timestamp.pipe';
   ],
   imports: [
     BrowserModule,
+    StoreModule.forRoot(store), 
+    extModules,  // Instrumentation must be imported after importing StoreModule
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
