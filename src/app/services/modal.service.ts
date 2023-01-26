@@ -1,3 +1,4 @@
+//[DEPRECATE! reason: moved functionality to NgRx]
 import { Injectable } from '@angular/core';
 
 interface IModal {
