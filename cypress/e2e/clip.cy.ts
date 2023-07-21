@@ -10,9 +10,9 @@ describe('Clip', () => {
   it('should play clip', () => {
     cy.visit('/');
     cy.get('app-clips-list > .grid a:first').click();
-    cy.get('.video-js', { timeout: 150000 }).should('be.visible').click();
-    cy.wait(3000);
-    cy.get('.video-js').click();
+    cy.get('.aspect-w-16').click();
+    cy.wait(5000);
+    cy.get('.aspect-w-16').click();
     //gte = greater than or equal to
     cy.get('.vjs-play-progress').invoke('width').should('gte', 0);
   });
